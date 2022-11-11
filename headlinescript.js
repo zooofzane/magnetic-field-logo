@@ -11,10 +11,14 @@ let time = 0;
 let noise = new perlinNoise3d();
 noise.noiseSeed(Math.E);
 
+let randomlogo;
+// 49
+
 p = document.getElementById("mftest");
 
 function initialize() {
     strtest = document.getElementById("textarea").value;
+    randomlogo = document.getElementById("randomlogo");
 
     splitstr = strtest.split('');
 
@@ -26,9 +30,6 @@ function initialize() {
         p.append(MFspan[i]);
     }
 
-    cursor = document.createElement("span");
-    cursor.setAttribute("id", "cursor");
-    cursor.innerHTML = "🧲";
 
 }
 
@@ -44,33 +45,44 @@ const tick = () => {
     splitstr = strtest.split('');
     noisemovement = document.getElementById("noisemove");
 
+    // cursor.style.left = x + 'px'
+    // cursor.style.top = y + 'px'
+
+    if (x > 400) {
+        document.body.style.cursor = "none"
+    } else {
+        document.body.style.cursor = "auto"
+    }
+
+
+
     if (splitstrnum != splitstr.length) {
-        console.log('3 previou sl: ' + splitstrnum)
-        console.log('2 sl: ' + splitstr.length)
+        // console.log('3 previou sl: ' + splitstrnum)
+        // console.log('2 sl: ' + splitstr.length)
 
         if (splitstrnum < splitstr.length) {
             let ic = document.createElement("span")
             ic.innerHTML = strtest[splitstrnum]
             ic.classList.add("icsplus");
             MFspan.push(ic)
-            console.log(MFspan)
+                // console.log(MFspan)
             p.append(ic)
-            console.log('p <: ' + p.childNodes)
+                // console.log('p <: ' + p.childNodes)
         }
 
         if (splitstrnum > splitstr.length) {
             let num = splitstrnum - splitstr.length;
             for (let i = 0; i < num; i++) {
                 p.children[0].remove();
-                console.log(p.childNodes)
+                // console.log(p.childNodes)
                 num--;
-                console.log("numafterreduce: " + num)
+                // console.log("numafterreduce: " + num)
             }
         }
-        console.log(p.childNodes)
+        // console.log(p.childNodes)
     }
 
-    let maxarea = document.getElementById("myAreaRange").value;
+    // let maxarea = document.getElementById("myAreaRange").value;
 
     for (let i = 0; i < splitstr.length; i++) {
         p.childNodes[i].innerHTML = splitstr[i]
@@ -88,17 +100,20 @@ const tick = () => {
         let dist = getDistance(posx, posy, x, y);
         let offsetnoise = 0;
         offsetnoise = clamp(offsetnoise, 0, 1);
-        offsetnoise = map(dist, 0, maxarea, 0, 4);
+        offsetnoise = map(dist, 0, 1000, 0, 4);
         let strength = document.getElementById("myStrengthRange").value;
 
-        if (noisemovement.checked) {
-            p.childNodes[i].style.setProperty("--slant", testleft * strength + directoffsite * offsetnoise);
-            p.childNodes[i].style.setProperty("--weight", testw);
-        } else {
-            p.childNodes[i].style.setProperty("--slant", testleft * strength);
-            p.childNodes[i].style.setProperty("--weight", testw);
-        }
+        // if (noisemovement.checked) {
+        //     p.childNodes[i].style.setProperty("--slant", testleft * strength + directoffsite * offsetnoise);
+        //     p.childNodes[i].style.setProperty("--weight", testw);
+        // } else {
+        p.childNodes[i].style.setProperty("--slant", testleft * strength);
+        // p.childNodes[i].style.setProperty("--slant", 45);
+        p.childNodes[i].style.setProperty("--weight", testw);
+        // }
     }
+
+
     window.requestAnimationFrame(tick)
 }
 
@@ -108,6 +123,28 @@ document.addEventListener('mousemove', (e) => {
     x = e.clientX;
     y = e.clientY;
 });
+
+document.addEventListener("keydown", (event) => {
+    if (event.code === 'Digit1') {
+        screensave()
+    }
+})
+
+document.addEventListener("keydown", (event) => {
+    if (event.code === 'Digit2') {
+        x = Math.random() * 1500;
+        y = Math.random() * 900 + 100;
+        console.log('random');
+    }
+})
+
+// console.log(randomlogo)
+randomlogo.onclick = function() {
+    x = Math.random() * 1500;
+    y = Math.random() * 900 + 100;
+    console.log('random');
+};
+
 
 function getOffset(el) {
     const rect = el.getBoundingClientRect();
@@ -135,4 +172,18 @@ function clamp(val, min, max) {
 
 function lerp(v0, v1, t) {
     return v0 * (1 - t) + v1 * t
+}
+
+function screensave() {
+    html2canvas(document.getElementById("mftest"), { backgroundColor: null }).then(canvas => {
+        document.getElementById('canvas').appendChild(canvas);
+        canvas.style['font-family'] = 'Times';
+        // canvas.style['font-weight'] = 100;
+        let a = document.createElement('a');
+        a.href = canvas.toDataURL("image/png");
+        a.download = 'Magnetic Field Logo.png';
+        a.click()
+            // console.log(canvas.toDataURL('image/png'))
+            // canvas.backgroundColor = null
+    });
 }

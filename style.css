@@ -24,7 +24,6 @@
 @font-face {
     font-family: 'GTPlanar';
     src: url('GT-Planar-Trial-VF.ttf') format('truetype');
-    /* font-weight: 120; */
 }
 
 html,
@@ -33,75 +32,52 @@ body {
     padding: 0;
     background-color: black;
     font-family: 'GTPlanar';
-    color: #ffffff;
-    /* cursor: none; */
+    color: white;
+    /* color: rgb(255, 82, 82); */
+    cursor: none;
+}
+
+#canvas {
+    position: absolute;
+    /* transform: translate(40%, -10%); */
+    margin: auto;
+    left: 20%;
+    /* background-color: blue; */
+}
+
+h {
+    font-variation-settings: 'wght' 900, 'slnt' 40;
 }
 
 #mftest {
-    position: absolute;
     margin: auto;
-    width: 90%;
     -webkit-font-smoothing: antialiased;
     font-size: 109px;
-    color: #ffffff;
     text-align: center;
-    top: 50%;
-    transform: translate(0%, -50%);
 }
 
-.posterP {
-    position: absolute;
+
+/* .posterP {
+    position: absolute; 
     margin: auto;
-    font-size: 89px;
-}
-
-
-/* align-tracks: start; */
-
-#posterleft {
-    left: 290px;
-    top: 190px;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-}
-
-#posterright {
-    /* width: 100%; */
-    left: var(--rightposition);
-    top: 135px;
-    /* transform: rotate(-90deg);*/
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-}
-
-#postertop {
-    left: var(--leftposition);
-    top: 100px;
-}
-
-#posterbottom {
-    left: calc(var(--leftposition) + 80px);
-    top: 850px;
-}
+    font-size: 89px; 
+} */
 
 span {
-    /* font-weight: ; */
+    /* color: white; */
+    /* font-weight: 0; */
     font-variation-settings: 'wght' var(--weight), 'slnt' var(--slant);
-    /* font-variation-settings: 'wght' var(--weight); */
 }
 
 #cursor {
     position: absolute;
     left: var(--cursorx);
     top: var(--cursory);
-    /* padding-left: 100px;
-    padding-top: 60px; */
     font-size: 69px;
-    /* color: #ffffff; */
+    color: #000000;
 }
 
 #editpanel {
-    /* position: absolute; */
     margin: auto;
     top: 2%;
     font-size: 19px;
@@ -109,9 +85,4 @@ span {
 
 #space {
     height: 200px;
-}
-
-#tickmarks,
-myStrengthRange {
-    color: #ffffff;
 }
