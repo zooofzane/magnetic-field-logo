@@ -30,7 +30,7 @@ function initialize() {
         p.append(MFspan[i]);
     }
 
-
+    // cursor = document.getElementById("cursor")
 }
 
 initialize()

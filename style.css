@@ -34,7 +34,7 @@ body {
     font-family: 'GTPlanar';
     color: white;
     /* color: rgb(255, 82, 82); */
-    cursor: none;
+    /* cursor: none; */
 }
 
 #canvas {
@@ -51,6 +51,7 @@ h {
 
 #mftest {
     margin: auto;
+    /* width: 60%; */
     -webkit-font-smoothing: antialiased;
     font-size: 109px;
     text-align: center;
