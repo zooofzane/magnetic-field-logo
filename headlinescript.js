@@ -5,12 +5,16 @@ let MFspan = [];
 let cursor;
 let posX = window.innerWidth / 2;
 let posY = window.innerHeight / 8;
-let x = 0;
-let y = 0;
+let x = Math.random() * 1500;
+let y = Math.random() * 900 + 100;
 let time = 0;
 let noise = new perlinNoise3d();
 noise.noiseSeed(Math.E);
-
+let switcher;
+let randomx = Math.random() * 1500;
+let randomy = Math.random() * 900 + 100;
+let mousex, mousey;
+mousex = 0;
 let randomlogo;
 // 49
 
@@ -19,6 +23,8 @@ p = document.getElementById("mftest");
 function initialize() {
     strtest = document.getElementById("textarea").value;
     randomlogo = document.getElementById("randomlogo");
+    switcher = document.getElementById("swithcer");
+
 
     splitstr = strtest.split('');
 
@@ -48,7 +54,7 @@ const tick = () => {
     // cursor.style.left = x + 'px'
     // cursor.style.top = y + 'px'
 
-    if (x > 400) {
+    if (mousex > 400) {
         document.body.style.cursor = "none"
     } else {
         document.body.style.cursor = "auto"
@@ -83,6 +89,22 @@ const tick = () => {
     }
 
     // let maxarea = document.getElementById("myAreaRange").value;
+    if (switcher.checked) {
+        x = mousex;
+        y = mousey;
+    } else {
+        x = randomx;
+        y = randomy;
+    }
+    logo();
+
+
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+
+function logo() {
 
     for (let i = 0; i < splitstr.length; i++) {
         p.childNodes[i].innerHTML = splitstr[i]
@@ -112,17 +134,7 @@ const tick = () => {
         p.childNodes[i].style.setProperty("--weight", testw);
         // }
     }
-
-
-    window.requestAnimationFrame(tick)
 }
-
-tick()
-
-document.addEventListener('mousemove', (e) => {
-    x = e.clientX;
-    y = e.clientY;
-});
 
 document.addEventListener("keydown", (event) => {
     if (event.code === 'Digit1') {
@@ -134,15 +146,18 @@ document.addEventListener("keydown", (event) => {
     if (event.code === 'Digit2') {
         x = Math.random() * 1500;
         y = Math.random() * 900 + 100;
-        console.log('random');
     }
 })
 
+document.addEventListener('mousemove', (e) => {
+    mousex = e.clientX;
+    mousey = e.clientY;
+});
+
 // console.log(randomlogo)
 randomlogo.onclick = function() {
-    x = Math.random() * 1500;
-    y = Math.random() * 900 + 100;
-    console.log('random');
+    randomx = Math.random() * 1500;
+    randomy = Math.random() * 900 + 100;
 };
 
 
