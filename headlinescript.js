@@ -90,11 +90,11 @@ const tick = () => {
 
     // let maxarea = document.getElementById("myAreaRange").value;
     if (switcher.checked) {
-        x = randomx;
-        y = randomy;
-    } else {
         x = mousex;
         y = mousey;
+    } else {
+        x = randomx;
+        y = randomy;
     }
     logo();
 
