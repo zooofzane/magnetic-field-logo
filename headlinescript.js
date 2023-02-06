@@ -83,7 +83,10 @@ const tick = () => {
     if (switcher.checked) {
         x = mousex;
         y = mousey;
+        randomx = mousex;
+        randomy = mousey;
     } else {
+
         x = randomx;
         y = randomy;
     }
@@ -123,16 +126,15 @@ function logo() {
     }
 }
 
-document.addEventListener("keydown", (event) => {
-    if (event.code === 'Digit1') {
-        screensave()
-    }
-})
+// document.addEventListener("keydown", (event) => {
+//     if (event.code === 'Digit1') {
+//         screensave()
+//     }
+// })
 
 document.addEventListener("keydown", (event) => {
-    if (event.code === 'Digit2') {
-        x = Math.random() * 1500;
-        y = Math.random() * 900 + 100;
+    if (event.code === 'KeyO') {
+        switcher.checked = !switcher.checked
     }
 })
 
@@ -145,8 +147,6 @@ document.addEventListener('mousemove', (e) => {
 randomlogo.onclick = function() {
     randomx = Math.random() * 1500;
     randomy = Math.random() * 900 + 100;
-
-
 };
 
 
