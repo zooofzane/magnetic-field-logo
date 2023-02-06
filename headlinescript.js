@@ -22,6 +22,9 @@ let mousex, mousey;
 mousex = 0;
 let randomlogo;
 
+const fontSizeSlider = document.getElementById("fontsizeslider");
+const fontSizeTextInput = document.getElementById("sizetextinput");
+
 p = document.getElementById("mftest");
 
 
@@ -43,21 +46,24 @@ function initialize() {
 
 initialize()
 
+function updateFontSizeTextInput () {
+    fontSizeTextInput.value = fontSizeSlider.value;
+}
+
+
+function updateFontSizeSlider () {
+    fontSizeSlider.value = fontSizeTextInput.value;
+}
+
+fontSizeSlider.addEventListener("input", updateFontSizeTextInput);
+fontSizeTextInput.addEventListener("input", updateFontSizeSlider);
+
 const tick = () => {
     // mousexinput.value = x;
     // mouseyinput.value = y;
     mousexinput = document.getElementById("pointx");
     mouseyinput = document.getElementById("pointy");
-
-    fontsizes = document.getElementById("fontsizeslider");
-    fontsizestextinput = document.getElementById("sizetextinput");
-    fontsizes.addEventListener("input", function() {
-        fontsizestextinput.value = fontsizes.value;
-    })
-    fontsizestextinput.addEventListener("input", function() {
-        fontsizes.value = fontsizestextinput.value;
-    })
-
+    
     strength = document.getElementById("myStrengthRange");
     slanttextinput = document.getElementById("slanttextinput")
     strength.addEventListener("input", function() {
