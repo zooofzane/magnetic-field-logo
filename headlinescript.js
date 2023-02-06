@@ -145,6 +145,8 @@ document.addEventListener('mousemove', (e) => {
 randomlogo.onclick = function() {
     randomx = Math.random() * 1500;
     randomy = Math.random() * 900 + 100;
+
+
 };
 
 

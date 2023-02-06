@@ -33,15 +33,13 @@ body {
     background-color: black;
     font-family: 'GTPlanar';
     color: #ffffff;
-    /* color: rgb(255, 82, 82); */
-    /* cursor: none; */
 }
 
 #canvas {
     position: absolute;
-    /* transform: translate(40%, -10%); */
     margin: auto;
-    left: 20%;
+    left: 25%;
+    top: 40%;
     /* background-color: blue; */
 }
 
@@ -86,4 +84,9 @@ span {
 
 #space {
     height: 200px;
+}
+
+#newlogo {
+    position: relative;
+    left: 40px
 }
