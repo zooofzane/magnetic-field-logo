@@ -103,7 +103,7 @@ const tick = () => {
     noisemovement = document.getElementById("noisemove");
 
     if (mousex > 400) {
-        document.body.style.cursor = "none"
+        // document.body.style.cursor = "none"
     } else {
         document.body.style.cursor = "auto"
     }
