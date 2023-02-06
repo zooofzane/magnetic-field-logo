@@ -43,6 +43,9 @@ initialize()
 
 const tick = () => {
 
+    fontwa = document.getElementById("rangea").value;
+    fontwb = document.getElementById("rangeb").value;
+
     splitstrnum = splitstr.length;
 
     time += 0.005;
@@ -51,41 +54,29 @@ const tick = () => {
     splitstr = strtest.split('');
     noisemovement = document.getElementById("noisemove");
 
-    // cursor.style.left = x + 'px'
-    // cursor.style.top = y + 'px'
-
     if (mousex > 400) {
         document.body.style.cursor = "none"
     } else {
         document.body.style.cursor = "auto"
     }
 
-
-
     if (splitstrnum != splitstr.length) {
-        // console.log('3 previou sl: ' + splitstrnum)
-        // console.log('2 sl: ' + splitstr.length)
 
         if (splitstrnum < splitstr.length) {
             let ic = document.createElement("span")
             ic.innerHTML = strtest[splitstrnum]
             ic.classList.add("icsplus");
             MFspan.push(ic)
-                // console.log(MFspan)
             p.append(ic)
-                // console.log('p <: ' + p.childNodes)
         }
 
         if (splitstrnum > splitstr.length) {
             let num = splitstrnum - splitstr.length;
             for (let i = 0; i < num; i++) {
                 p.children[0].remove();
-                // console.log(p.childNodes)
                 num--;
-                // console.log("numafterreduce: " + num)
             }
         }
-        // console.log(p.childNodes)
     }
 
     // let maxarea = document.getElementById("myAreaRange").value;
@@ -105,7 +96,8 @@ const tick = () => {
 tick()
 
 function logo() {
-
+    let strength = document.getElementById("myStrengthRange").value;
+    let wstrength = document.getElementById("myStrengthRangeweight").value;
     for (let i = 0; i < splitstr.length; i++) {
         p.childNodes[i].innerHTML = splitstr[i]
 
@@ -116,23 +108,18 @@ function logo() {
         let ydist = y - posy;
 
         let testleft = xdist / 160 * 45 * ydist / 160;
-        let testw = (1 - Math.abs(xdist / window.innerWidth) * 9 + 1 - Math.abs(ydist / window.innerHeight) * 9) * 900;
+        let testw = (1 - Math.abs(xdist / window.innerWidth) * wstrength + 1 - Math.abs(ydist / window.innerHeight) * wstrength) * 900;
+        testw = clamp(testw, fontwa, fontwb)
 
         let directoffsite = noise.get(posx * 0.001, posy * 0.04, time) * 190 - 75;
         let dist = getDistance(posx, posy, x, y);
         let offsetnoise = 0;
         offsetnoise = clamp(offsetnoise, 0, 1);
         offsetnoise = map(dist, 0, 1000, 0, 4);
-        let strength = document.getElementById("myStrengthRange").value;
 
-        // if (noisemovement.checked) {
-        //     p.childNodes[i].style.setProperty("--slant", testleft * strength + directoffsite * offsetnoise);
-        //     p.childNodes[i].style.setProperty("--weight", testw);
-        // } else {
+
         p.childNodes[i].style.setProperty("--slant", testleft * strength);
-        // p.childNodes[i].style.setProperty("--slant", 45);
         p.childNodes[i].style.setProperty("--weight", testw);
-        // }
     }
 }
 
