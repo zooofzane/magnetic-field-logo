@@ -24,7 +24,6 @@
     <![endif] -->
 
     <script src="headlinescript.js" async defer></script>
-    <!-- <script src="poster.js" async defer></script> -->
 
     <div id="editpanel">
         <!-- <label>Bugs notes: <br>
@@ -35,49 +34,58 @@
         <label>TURN THE FIELD ON/OFF (Press O)</label>
         <input id="swithcer" type="checkbox" checked>
 
-        <label id="newlogo">New Logo</label>
-        <input id="newlogo" type="button" value="generate a random logo" id="randomlogo">
-        <!-- <br><br>
-        <label>WIP   Mode Poster/Headline</label>
-        <input id="mode" type="checkbox"> -->
+        <br><br>
+        <label>Pointer X</label>
+        <input id="pointx" type="text" value="900"><br>
+        <label>Pointer Y</label>
+        <input id="pointy" type="text" value="900">
+
+
+        <br><br>
+        <label>New Logo</label>
+        <input type="button" value="generate a random logo" id="randomlogo">
+
         <br><br>
         <label>Type</label><br>
-        <!-- <textarea id="textarea" style="width: 127px; height: 128px;" placeholder="MAGNETIC FIELD">MAGNETIC FIELD MAGNETIC FIELD MAGNETIC FIELD MAGNETIC FIELD</textarea> -->
         <textarea id="textarea" style="width: 127px; height: 128px;" placeholder="MAGNETIC FIELD">MAGNETIC FIELD</textarea>
-        <!-- <br><br>
-        <label>WIP   Area</label><br>
-        <input id="myAreaRange" type="range" min="1" max="1000" value="500" class="slider" step="1"> -->
+
+        <br><br>
+        <label>Size</label><br>
+        <input id="sizetextinput" type="text" value="100"><br>
+        <input id="fontsizeslider" type="range" min="50" max="200" value="100" class="slider" step="1" list="tickmarks">
+
+
         <br><br>
         <label>Slant</label><br>
-        <input id="myStrengthRange" type="range" min="0" max="0.8" value="0.1" class="slider" step="0.01" list="tickmarks">
+        <input id="slanttextinput" type="text" value="0.11"><br>
+        <input id="myStrengthRange" type="range" min="0" max="0.8" value="0.11" class="slider" step="0.01" list="tickmarks">
+
         <br><br>
         <label>Field Size</label><br>
-        <input id="myStrengthRangeweight" type="range" min="1" max="19" value="9" class="slider" step="0.5" list="tickmarks">
+        <input id="fieldsizetextinput" type="text" value="9"><br>
+        <input id="myStrengthRangeweight" type="range" min="1" max="19" value="9" class="slider" step="0.1" list="tickmarks">
+
+
         <datalist id="tickmarks">
             <option value="1"></option>
         </datalist>
 
         <br><br>
         <label>WeightRange Side A</label><br>
+        <input id="wAinput" type="text" value="100"><br>
         <input id="rangea" type="range" min="100" max="900" value="400" class="slider" step="10">
         <br><br>
         <label>WeightRange Side B</label><br>
+        <input id="wBinput" type="text" value="900"><br>
         <input id="rangeb" type="range" min="100" max="900" value="900" class="slider" step="10">
-
-
-
-        <!-- 
-        <br><br>
-        <label>PRESS ① to save image</label><br> -->
-        <!-- <input type="button" value="click here or press S"> -->
 
     </div>
     <div id="space">
         <div id="canvas">
-            <!-- <h>test</h> -->
             <p id="mftest"></p>
         </div>
     </div>
+    <div id="background"></div>
     <!-- <span id="cursor">🧲</span> -->
     <p class="posterP" id="left"></p>
     <p class="posterP" id="right"></p>

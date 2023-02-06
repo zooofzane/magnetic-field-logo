@@ -13,18 +13,22 @@ noise.noiseSeed(Math.E);
 let switcher;
 let randomx = Math.random() * 1500;
 let randomy = Math.random() * 900 + 100;
+let fontsizes = 100
+let strength
+let wstrength
+let fontsizestextinput, slanttextinput, fieldsizetextinput, wAinput, wBinput;
+let mousexinput, mouseyinput
 let mousex, mousey;
 mousex = 0;
 let randomlogo;
-// 49
 
 p = document.getElementById("mftest");
+
 
 function initialize() {
     strtest = document.getElementById("textarea").value;
     randomlogo = document.getElementById("randomlogo");
     switcher = document.getElementById("swithcer");
-
 
     splitstr = strtest.split('');
 
@@ -35,16 +39,60 @@ function initialize() {
         MFspan.push(ic)
         p.append(MFspan[i]);
     }
-
-    // cursor = document.getElementById("cursor")
 }
 
 initialize()
 
 const tick = () => {
+    // mousexinput.value = x;
+    // mouseyinput.value = y;
+    mousexinput = document.getElementById("pointx");
+    mouseyinput = document.getElementById("pointy");
 
-    fontwa = document.getElementById("rangea").value;
-    fontwb = document.getElementById("rangeb").value;
+    fontsizes = document.getElementById("fontsizeslider");
+    fontsizestextinput = document.getElementById("sizetextinput");
+    fontsizes.addEventListener("input", function() {
+        fontsizestextinput.value = fontsizes.value;
+    })
+    fontsizestextinput.addEventListener("input", function() {
+        fontsizes.value = fontsizestextinput.value;
+    })
+
+    strength = document.getElementById("myStrengthRange");
+    slanttextinput = document.getElementById("slanttextinput")
+    strength.addEventListener("input", function() {
+        slanttextinput.value = strength.value;
+    })
+    slanttextinput.addEventListener("input", function() {
+        strength.value = slanttextinput.value;
+    })
+
+    wstrength = document.getElementById("myStrengthRangeweight");
+    fieldsizetextinput = document.getElementById("fieldsizetextinput");
+    wstrength.addEventListener("input", function() {
+        fieldsizetextinput.value = wstrength.value;
+    })
+    fieldsizetextinput.addEventListener("input", function() {
+        wstrength.value = fieldsizetextinput.value;
+    })
+
+    fontwa = document.getElementById("rangea");
+    wAinput = document.getElementById("wAinput");
+    fontwa.addEventListener("input", function() {
+        wAinput.value = fontwa.value;
+    })
+    wAinput.addEventListener("input", function() {
+        fontwa.value = wAinput.value;
+    })
+
+    fontwb = document.getElementById("rangeb");
+    wBinput = document.getElementById("wBinput");
+    fontwb.addEventListener("input", function() {
+        wBinput.value = fontwb.value;
+    })
+    wBinput.addEventListener("input", function() {
+        fontwb.value = wBinput.value;
+    })
 
     splitstrnum = splitstr.length;
 
@@ -79,28 +127,24 @@ const tick = () => {
         }
     }
 
-    // let maxarea = document.getElementById("myAreaRange").value;
     if (switcher.checked) {
         x = mousex;
         y = mousey;
-        randomx = mousex;
-        randomy = mousey;
+        mousexinput.value = mousex;
+        mouseyinput.value = mousey;
     } else {
 
-        x = randomx;
-        y = randomy;
-    }
-    logo();
 
+        x = mousexinput.value
+        y = mouseyinput.value
+    }
+
+    logo();
 
     window.requestAnimationFrame(tick)
 }
 
-tick()
-
 function logo() {
-    let strength = document.getElementById("myStrengthRange").value;
-    let wstrength = document.getElementById("myStrengthRangeweight").value;
     for (let i = 0; i < splitstr.length; i++) {
         p.childNodes[i].innerHTML = splitstr[i]
 
@@ -111,26 +155,17 @@ function logo() {
         let ydist = y - posy;
 
         let testleft = xdist / 160 * 45 * ydist / 160;
-        let testw = (1 - Math.abs(xdist / window.innerWidth) * wstrength + 1 - Math.abs(ydist / window.innerHeight) * wstrength) * 900;
-        testw = clamp(testw, fontwa, fontwb)
+        let testw = (1 - Math.abs(xdist / window.innerWidth) * wstrength.value + 1 - Math.abs(ydist / window.innerHeight) * wstrength.value) * 900;
+        testw = clamp(testw, fontwa.value, fontwb.value)
 
-        let directoffsite = noise.get(posx * 0.001, posy * 0.04, time) * 190 - 75;
-        let dist = getDistance(posx, posy, x, y);
-        let offsetnoise = 0;
-        offsetnoise = clamp(offsetnoise, 0, 1);
-        offsetnoise = map(dist, 0, 1000, 0, 4);
-
-
-        p.childNodes[i].style.setProperty("--slant", testleft * strength);
+        p.childNodes[i].style.setProperty("--slant", testleft * strength.value);
         p.childNodes[i].style.setProperty("--weight", testw);
+
+        p.childNodes[i].style.fontSize = fontsizestextinput.value + "px"
     }
 }
 
-// document.addEventListener("keydown", (event) => {
-//     if (event.code === 'Digit1') {
-//         screensave()
-//     }
-// })
+tick()
 
 document.addEventListener("keydown", (event) => {
     if (event.code === 'KeyO') {
@@ -143,10 +178,14 @@ document.addEventListener('mousemove', (e) => {
     mousey = e.clientY;
 });
 
-// console.log(randomlogo)
 randomlogo.onclick = function() {
+    console.log("randomlogo")
     randomx = Math.random() * 1500;
-    randomy = Math.random() * 900 + 100;
+    // randomy = Math.random() * 900 + 100;
+    randomy = Math.random() * 1500;
+
+    mousexinput.value = Math.floor(randomx);
+    mouseyinput.value = Math.floor(randomy);
 };
 
 
@@ -154,7 +193,6 @@ function getOffset(el) {
     const rect = el.getBoundingClientRect();
     return {
         left: rect.left,
-        // top: rect.top + window.scrollY
         top: rect.top
     };
 }
@@ -162,7 +200,6 @@ function getOffset(el) {
 function getDistance(x1, y1, x2, y2) {
     let y = x2 - x1;
     let x = y2 - y1;
-
     return Math.sqrt(x * x + y * y);
 }
 
@@ -182,12 +219,9 @@ function screensave() {
     html2canvas(document.getElementById("mftest"), { backgroundColor: null }).then(canvas => {
         document.getElementById('canvas').appendChild(canvas);
         canvas.style['font-family'] = 'Times';
-        // canvas.style['font-weight'] = 100;
         let a = document.createElement('a');
         a.href = canvas.toDataURL("image/png");
         a.download = 'Magnetic Field Logo.png';
         a.click()
-            // console.log(canvas.toDataURL('image/png'))
-            // canvas.backgroundColor = null
     });
 }

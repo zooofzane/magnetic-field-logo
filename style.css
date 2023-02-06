@@ -30,17 +30,29 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: transparent;
     font-family: 'GTPlanar';
     color: #ffffff;
 }
 
+#background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: black;
+    height: 100%;
+    z-index: -2;
+}
+
 #canvas {
+    background-color: transparent;
     position: absolute;
     margin: auto;
-    left: 25%;
-    top: 40%;
-    /* background-color: blue; */
+    left: 0%;
+    top: 30%;
+    width: 100%;
+    z-index: -1;
 }
 
 h {
@@ -48,23 +60,12 @@ h {
 }
 
 #mftest {
-    margin: auto;
-    /* width: 60%; */
     -webkit-font-smoothing: antialiased;
     font-size: 109px;
     text-align: center;
 }
 
-
-/* .posterP {
-    position: absolute; 
-    margin: auto;
-    font-size: 89px; 
-} */
-
 span {
-    /* color: white; */
-    /* font-weight: 0; */
     font-variation-settings: 'wght' var(--weight), 'slnt' var(--slant);
 }
 
@@ -80,6 +81,8 @@ span {
     margin: auto;
     top: 2%;
     font-size: 19px;
+    z-index: 1;
+    background-color: transparent;
 }
 
 #space {
