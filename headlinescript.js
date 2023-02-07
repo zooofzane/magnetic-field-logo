@@ -58,6 +58,21 @@ function updateFontSizeSlider () {
 fontSizeSlider.addEventListener("input", updateFontSizeTextInput);
 fontSizeTextInput.addEventListener("input", updateFontSizeSlider);
 
+const typecolor = document.getElementById("fcolorInput")
+const bgcolor = document.getElementById("bgcolorInput")
+const backgrounddiv = document.getElementById("background")
+const bodycolor = document.body
+
+
+function updateBackgroundcolor () {
+    backgrounddiv.style.backgroundColor = bgcolor.value;
+}
+function updateTypecolor () {
+    bodycolor.style.color = typecolor.value;
+}
+typecolor.addEventListener("input", updateTypecolor);
+bgcolor.addEventListener("input", updateBackgroundcolor);
+
 const tick = () => {
     // mousexinput.value = x;
     // mouseyinput.value = y;
@@ -167,7 +182,7 @@ function logo() {
         p.childNodes[i].style.setProperty("--slant", testleft * strength.value);
         p.childNodes[i].style.setProperty("--weight", testw);
 
-        p.childNodes[i].style.fontSize = fontsizestextinput.value + "px"
+        p.childNodes[i].style.fontSize = fontSizeSlider.value + "px"
     }
 }
 
