@@ -23,7 +23,7 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif] -->
 
-    <script src="headlinescript.js" async defer></script>
+    <script type="module" src="headlinescript.js" async defer></script>
 
     <div id="editpanel">
         <!-- <label>Bugs notes: <br>
@@ -42,11 +42,11 @@
 
 
         <br><br>
-        <label>New Logo</label>
+        <label>Random</label>
         <input type="button" value="generate a random logo" id="randomlogo">
 
         <br><br>
-        <label>Type</label><br>
+        <label>Text</label><br>
         <textarea id="textarea" style="width: 127px; height: 128px;" placeholder="MAGNETIC FIELD">MAGNETIC FIELD</textarea>
 
         <br><br>
@@ -61,7 +61,7 @@
         <input id="myStrengthRange" type="range" min="0" max="0.8" value="0.11" class="slider" step="0.01" list="tickmarks">
 
         <br><br>
-        <label>Field Size</label><br>
+        <label>Ramp</label><br>
         <input id="fieldsizetextinput" type="text" value="9"><br>
         <input id="myStrengthRangeweight" type="range" min="1" max="19" value="9" class="slider" step="0.1" list="tickmarks">
 
@@ -71,20 +71,20 @@
         </datalist>
 
         <br><br>
-        <label>WeightRange Side A</label><br>
+        <label>Weight A</label><br>
         <input id="wAinput" type="text" value="100"><br>
         <input id="rangea" type="range" min="100" max="900" value="400" class="slider" step="10">
         <br><br>
-        <label>WeightRange Side B</label><br>
+        <label>Weight B</label><br>
         <input id="wBinput" type="text" value="900"><br>
         <input id="rangeb" type="range" min="100" max="900" value="900" class="slider" step="10">
 
         <br><br>
-        <label>Background Color</label><br>
+        <label>Background</label><br>
         <input type="color" id="bgcolorInput">
 
         <br><br>
-        <label>Font Color</label><br>
+        <label>Body</label><br>
         <input type="color" id="fcolorInput">
     </div>
     <div id="space">

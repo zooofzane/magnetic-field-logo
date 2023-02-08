@@ -1,8 +1,19 @@
+// 'use strict';
+
+// import * as domtoimage from '/dom-to-image';
+import domtoimage from 'dom-to-image';
+// import domtoimage from './dom-to-image';
+// import { domtoimage } from 'dom-to-image';
+// var domtoimage = require('dom-to-image');
+
+var node = document.getElementById('mftest');
+
+
+
 let strtest, splitstr, testMFVF
 let splitstrnum;
 let p
 let MFspan = [];
-let cursor;
 let posX = window.innerWidth / 2;
 let posY = window.innerHeight / 8;
 let x = Math.random() * 1500;
@@ -22,12 +33,10 @@ let mousex, mousey;
 mousex = 0;
 let randomlogo;
 
-const fontSizeSlider = document.getElementById("fontsizeslider");
-const fontSizeTextInput = document.getElementById("sizetextinput");
-
 p = document.getElementById("mftest");
 
-
+mousexinput = document.getElementById("pointx");
+mouseyinput = document.getElementById("pointy");
 function initialize() {
     strtest = document.getElementById("textarea").value;
     randomlogo = document.getElementById("randomlogo");
@@ -46,74 +55,8 @@ function initialize() {
 
 initialize()
 
-function updateFontSizeTextInput () {
-    fontSizeTextInput.value = fontSizeSlider.value;
-}
-
-
-function updateFontSizeSlider () {
-    fontSizeSlider.value = fontSizeTextInput.value;
-}
-
-fontSizeSlider.addEventListener("input", updateFontSizeTextInput);
-fontSizeTextInput.addEventListener("input", updateFontSizeSlider);
-
-const typecolor = document.getElementById("fcolorInput")
-const bgcolor = document.getElementById("bgcolorInput")
-const backgrounddiv = document.getElementById("background")
-const bodycolor = document.body
-
-
-function updateBackgroundcolor () {
-    backgrounddiv.style.backgroundColor = bgcolor.value;
-}
-function updateTypecolor () {
-    bodycolor.style.color = typecolor.value;
-}
-typecolor.addEventListener("input", updateTypecolor);
-bgcolor.addEventListener("input", updateBackgroundcolor);
-
 const tick = () => {
-    // mousexinput.value = x;
-    // mouseyinput.value = y;
-    mousexinput = document.getElementById("pointx");
-    mouseyinput = document.getElementById("pointy");
-    
-    strength = document.getElementById("myStrengthRange");
-    slanttextinput = document.getElementById("slanttextinput")
-    strength.addEventListener("input", function() {
-        slanttextinput.value = strength.value;
-    })
-    slanttextinput.addEventListener("input", function() {
-        strength.value = slanttextinput.value;
-    })
 
-    wstrength = document.getElementById("myStrengthRangeweight");
-    fieldsizetextinput = document.getElementById("fieldsizetextinput");
-    wstrength.addEventListener("input", function() {
-        fieldsizetextinput.value = wstrength.value;
-    })
-    fieldsizetextinput.addEventListener("input", function() {
-        wstrength.value = fieldsizetextinput.value;
-    })
-
-    fontwa = document.getElementById("rangea");
-    wAinput = document.getElementById("wAinput");
-    fontwa.addEventListener("input", function() {
-        wAinput.value = fontwa.value;
-    })
-    wAinput.addEventListener("input", function() {
-        fontwa.value = wAinput.value;
-    })
-
-    fontwb = document.getElementById("rangeb");
-    wBinput = document.getElementById("wBinput");
-    fontwb.addEventListener("input", function() {
-        wBinput.value = fontwb.value;
-    })
-    wBinput.addEventListener("input", function() {
-        fontwb.value = wBinput.value;
-    })
 
     splitstrnum = splitstr.length;
 
@@ -130,7 +73,6 @@ const tick = () => {
     }
 
     if (splitstrnum != splitstr.length) {
-
         if (splitstrnum < splitstr.length) {
             let ic = document.createElement("span")
             ic.innerHTML = strtest[splitstrnum]
@@ -138,7 +80,6 @@ const tick = () => {
             MFspan.push(ic)
             p.append(ic)
         }
-
         if (splitstrnum > splitstr.length) {
             let num = splitstrnum - splitstr.length;
             for (let i = 0; i < num; i++) {
@@ -154,8 +95,6 @@ const tick = () => {
         mousexinput.value = mousex;
         mouseyinput.value = mousey;
     } else {
-
-
         x = mousexinput.value
         y = mouseyinput.value
     }
@@ -186,12 +125,26 @@ function logo() {
     }
 }
 
-tick()
+
 
 document.addEventListener("keydown", (event) => {
     if (event.code === 'KeyO') {
         switcher.checked = !switcher.checked
     }
+})
+
+document.addEventListener("keydown", (event) => {
+    if (event.code === 'KeyS') {
+    domtoimage.toPng(node)
+        .then(function (dataUrl) {
+            var img = new Image();
+            img.src = dataUrl;
+            document.body.appendChild(img);
+        })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+        });
+}
 })
 
 document.addEventListener('mousemove', (e) => {
@@ -245,3 +198,72 @@ function screensave() {
         a.click()
     });
 }
+
+
+
+
+const fontSizeSlider = document.getElementById("fontsizeslider");
+const fontSizeTextInput = document.getElementById("sizetextinput");
+function updateFontSizeTextInput () {
+    fontSizeTextInput.value = fontSizeSlider.value;
+}
+function updateFontSizeSlider () {
+    fontSizeSlider.value = fontSizeTextInput.value;
+}
+fontSizeSlider.addEventListener("input", updateFontSizeTextInput);
+fontSizeTextInput.addEventListener("input", updateFontSizeSlider);
+
+const typecolor = document.getElementById("fcolorInput")
+const bgcolor = document.getElementById("bgcolorInput")
+const backgrounddiv = document.getElementById("background")
+const bodycolor = document.body
+function updateBackgroundcolor () {
+    backgrounddiv.style.backgroundColor = bgcolor.value;
+}
+function updateTypecolor () {
+    bodycolor.style.color = typecolor.value;
+}
+typecolor.addEventListener("input", updateTypecolor);
+bgcolor.addEventListener("input", updateBackgroundcolor);
+
+
+
+
+strength = document.getElementById("myStrengthRange");
+slanttextinput = document.getElementById("slanttextinput")
+strength.addEventListener("input", function() {
+    slanttextinput.value = strength.value;
+})
+slanttextinput.addEventListener("input", function() {
+    strength.value = slanttextinput.value;
+})
+
+wstrength = document.getElementById("myStrengthRangeweight");
+fieldsizetextinput = document.getElementById("fieldsizetextinput");
+wstrength.addEventListener("input", function() {
+    fieldsizetextinput.value = wstrength.value;
+})
+fieldsizetextinput.addEventListener("input", function() {
+    wstrength.value = fieldsizetextinput.value;
+})
+
+fontwa = document.getElementById("rangea");
+wAinput = document.getElementById("wAinput");
+fontwa.addEventListener("input", function() {
+    wAinput.value = fontwa.value;
+})
+wAinput.addEventListener("input", function() {
+    fontwa.value = wAinput.value;
+})
+
+fontwb = document.getElementById("rangeb");
+wBinput = document.getElementById("wBinput");
+fontwb.addEventListener("input", function() {
+    wBinput.value = fontwb.value;
+})
+wBinput.addEventListener("input", function() {
+    fontwb.value = wBinput.value;
+})
+
+
+tick()
