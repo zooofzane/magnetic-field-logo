@@ -1,18 +1,3 @@
-// 'use strict';
-
-console.log("here")
-    // import * as domtoimage from '/dom-to-image'
-    // import domtoimage from './dom-to-image';
-console.log("here")
-    // import domtoimage from './dom-to-image';
-    // import { domtoimage } from 'dom-to-image';
-    // var domtoimage = require('dom-to-image');
-    // import * from './node_modules/dom-to-image/src/dom-to-image.js';
-
-var node = document.getElementById('mftest');
-
-
-
 let strtest, splitstr, testMFVF
 let splitstrnum;
 let p
@@ -22,8 +7,6 @@ let posY = window.innerHeight / 8;
 let x = Math.random() * 1500;
 let y = Math.random() * 900 + 100;
 let time = 0;
-let noise = new perlinNoise3d();
-noise.noiseSeed(Math.E);
 let switcher;
 let randomx = Math.random() * 1500;
 let randomy = Math.random() * 900 + 100;
@@ -137,19 +120,19 @@ document.addEventListener("keydown", (event) => {
     }
 })
 
-// document.addEventListener("keydown", (event) => {
-//     if (event.code === 'KeyS') {
-//         domtoimage.toPng(node)
-//             .then(function(dataUrl) {
-//                 var img = new Image();
-//                 img.src = dataUrl;
-//                 document.body.appendChild(img);
-//             })
-//             .catch(function(error) {
-//                 console.error('oops, something went wrong!', error);
-//             });
-//     }
-// })
+document.addEventListener("keydown", (event) => {
+    if (event.code === 'KeyS') {
+        domtoimage.toPng(node)
+            .then(function(dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                document.body.appendChild(img);
+            })
+            .catch(function(error) {
+                console.error('oops, something went wrong!', error);
+            });
+    }
+})
 
 document.addEventListener('mousemove', (e) => {
     mousex = e.clientX;
