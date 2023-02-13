@@ -1,10 +1,13 @@
 // 'use strict';
 
-// import * as domtoimage from '/dom-to-image';
-import domtoimage from 'dom-to-image';
-// import domtoimage from './dom-to-image';
-// import { domtoimage } from 'dom-to-image';
-// var domtoimage = require('dom-to-image');
+console.log("here")
+    // import * as domtoimage from '/dom-to-image'
+    // import domtoimage from './dom-to-image';
+console.log("here")
+    // import domtoimage from './dom-to-image';
+    // import { domtoimage } from 'dom-to-image';
+    // var domtoimage = require('dom-to-image');
+    // import * from './node_modules/dom-to-image/src/dom-to-image.js';
 
 var node = document.getElementById('mftest');
 
@@ -37,6 +40,7 @@ p = document.getElementById("mftest");
 
 mousexinput = document.getElementById("pointx");
 mouseyinput = document.getElementById("pointy");
+
 function initialize() {
     strtest = document.getElementById("textarea").value;
     randomlogo = document.getElementById("randomlogo");
@@ -133,19 +137,19 @@ document.addEventListener("keydown", (event) => {
     }
 })
 
-document.addEventListener("keydown", (event) => {
-    if (event.code === 'KeyS') {
-    domtoimage.toPng(node)
-        .then(function (dataUrl) {
-            var img = new Image();
-            img.src = dataUrl;
-            document.body.appendChild(img);
-        })
-        .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-        });
-}
-})
+// document.addEventListener("keydown", (event) => {
+//     if (event.code === 'KeyS') {
+//         domtoimage.toPng(node)
+//             .then(function(dataUrl) {
+//                 var img = new Image();
+//                 img.src = dataUrl;
+//                 document.body.appendChild(img);
+//             })
+//             .catch(function(error) {
+//                 console.error('oops, something went wrong!', error);
+//             });
+//     }
+// })
 
 document.addEventListener('mousemove', (e) => {
     mousex = e.clientX;
@@ -204,10 +208,12 @@ function screensave() {
 
 const fontSizeSlider = document.getElementById("fontsizeslider");
 const fontSizeTextInput = document.getElementById("sizetextinput");
-function updateFontSizeTextInput () {
+
+function updateFontSizeTextInput() {
     fontSizeTextInput.value = fontSizeSlider.value;
 }
-function updateFontSizeSlider () {
+
+function updateFontSizeSlider() {
     fontSizeSlider.value = fontSizeTextInput.value;
 }
 fontSizeSlider.addEventListener("input", updateFontSizeTextInput);
@@ -217,10 +223,12 @@ const typecolor = document.getElementById("fcolorInput")
 const bgcolor = document.getElementById("bgcolorInput")
 const backgrounddiv = document.getElementById("background")
 const bodycolor = document.body
-function updateBackgroundcolor () {
+
+function updateBackgroundcolor() {
     backgrounddiv.style.backgroundColor = bgcolor.value;
 }
-function updateTypecolor () {
+
+function updateTypecolor() {
     bodycolor.style.color = typecolor.value;
 }
 typecolor.addEventListener("input", updateTypecolor);
