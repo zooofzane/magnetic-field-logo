@@ -49,7 +49,7 @@ body {
     background-color: transparent;
     position: absolute;
     margin: auto;
-    left: 0%;
+    left: 5%;
     top: 30%;
     width: 100%;
     z-index: -1;
@@ -93,4 +93,8 @@ span {
 #newlogo {
     position: relative;
     left: 40px
+}
+
+.hidden {
+    display: none;
 }
