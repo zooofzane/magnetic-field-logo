@@ -1,0 +1,21 @@
+{
+    "name": "mf-logo",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "vite": "^4.1.0"
+    },
+    "dependencies": {
+        "dom-to-image": "^2.6.0",
+        "h264-mp4-encoder": "^1.0.12",
+        "html2canvas": "^1.4.1",
+        "p5": "^1.5.0",
+        "rasterizehtml": "^1.3.1"
+    }
+}
