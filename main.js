@@ -1,7 +1,7 @@
 import './style.css'
 import './js/capture.js'
 import './js/basicfunctions'
-import * as HME from "h264-mp4-encoder";
+// import * as HME from "h264-mp4-encoder";
 
 let time = 0;
 
